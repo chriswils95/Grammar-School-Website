@@ -114,8 +114,9 @@ global.classes = [];
   
 
 
-var mysqlconnection = mysql.createConnection(
+var mysqlconnection = mysql.createPool(
     {
+        connectionLimit : 10,
         host: 'localhost',
         user: 'root',
         password: 'password',
@@ -126,13 +127,13 @@ var mysqlconnection = mysql.createConnection(
 
 
 
- mysqlconnection.connect((err => {
-    if(!err){
-        console.log('connection successful')
-    }else{
-        console.log(err)
-    }
-}))
+//  mysqlconnection.connect((err => {
+//     if(!err){
+//         console.log('connection successful')
+//     }else{
+//         console.log(err)
+//     }
+// }))
 
 // mysqlconnection.query(sql, [values], function (err, result) {
 //     if(err){
@@ -716,7 +717,7 @@ await fs.readFile('views/Partials/Header/question_header.ejs', function (err, da
 })
 
 
-const port = process.env.PORT || 8012;
+const port = process.env.PORT || 8013;
 app.listen(port, () => console.log('listening on ' + port));
 
 
