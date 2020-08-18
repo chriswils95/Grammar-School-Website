@@ -122,3 +122,9 @@
 {"level":"error","message":"user not in database","service":"user-service"}
 {"level":"error","message":"user not in database","service":"user-service"}
 {"level":"error","message":"user not in database","service":"user-service"}
+{"level":"error","message":"database error","service":"user-service"}
+{"level":"error","message":"database error","service":"user-service"}
+{"level":"error","message":"user not in database","service":"user-service"}
+{"level":"error","message":"user not in database","service":"user-service"}
+{"level":"error","message":"user not in database","service":"user-service"}
+{"level":"error","message":"user not in database","service":"user-service"}

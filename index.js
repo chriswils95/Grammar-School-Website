@@ -117,10 +117,10 @@ global.classes = [];
 var mysqlconnection = mysql.createPool(
     {
         connectionLimit : 10,
-        host: 'localhost',
-        user: 'root',
-        password: 'password',
-        database: 'user',
+        host: 'us-cdbr-east-02.cleardb.com',
+        user: 'b279ebed0d6def',
+        password: 'dd30951a',
+        database: 'heroku_14f4ab6cbd8028b',
         multipleStatements: true,
     }
 );
@@ -717,7 +717,7 @@ await fs.readFile('views/Partials/Header/question_header.ejs', function (err, da
 })
 
 
-const port = process.env.PORT || 8013;
+const port = process.env.PORT || 8014;
 app.listen(port, () => console.log('listening on ' + port));
 
 
