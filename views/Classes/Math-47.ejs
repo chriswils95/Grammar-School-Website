@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+  <meta name=viewport content="width=device-width, initial-scale=1">
+
+
+  <title>The Sierra Leone Grammar School</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  </script>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+
+<body>
+  <% index = 0  %> 
+  <div class="learning-container">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+          aria-controls="nav-home" aria-selected="true">Home</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+          aria-controls="nav-profile" aria-selected="false">Content</a>
+        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
+          aria-controls="nav-contact" aria-selected="false">Exams</a>
+        <a class="nav-item nav-link" id="nav-grades-tab" data-toggle="tab" href="#nav-grades" role="tab"
+          aria-controls="nav-grades" aria-selected="false">Grades</a>
+        <a class="nav-item nav-link" id="nav-schedule-tab" data-toggle="tab" href="#nav-schedule" role="tab"
+          aria-controls="nav-schedule" aria-selected="false">Schedule</a>
+        <a class="nav-item nav-link" id="nav-syllabus-tab" data-toggle="tab" href="#nav-syllabus" role="tab"
+          aria-controls="nav-syllabus" aria-selected="false">Syllabus</a>
+        <% if (type == "student")  { %>
+        <a class="navbar-brand" href="#" style="display: none;">Teacher view</a>
+        <% } else { %>
+        <a class="navbar-brand" href="#">Teacher view</a>
+        <% }  %>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+        <div class="row">
+          <div class="col-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link active" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard"
+                role="tab" aria-controls="v-pills-dashboard" aria-selected="true">Dashboard</a>
+              <a class="nav-link" id="v-pills-announcement-tab" data-toggle="pill" href="#v-pills-announcement"
+                role="tab" aria-controls="v-pills-announcement" aria-selected="false">Announcement</a>
+              <a class="nav-link" id="v-pills-assignments-tab" data-toggle="pill" href="#v-pills-assignments" role="tab"
+                aria-controls="v-pills-assignments" aria-selected="false">Assignments</a>
+              <a class="nav-link" id="v-pills-outcomes-tab" data-toggle="pill" href="#v-pills-outcomes" role="tab"
+                aria-controls="v-pills-outcomes" aria-selected="false">Learning Outcomes</a>
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="tab-content" id="v-pills-tabContent">
+              <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel"
+                aria-labelledby="v-pills-dashboard-tab">...</div>
+              <div class="tab-pane fade" id="v-pills-announcement" role="tabpanel"
+                aria-labelledby="v-pills-announcement-tab">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
+                  data-whatever="@getbootstrap">Make an Announcement</button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="/add_announcement" method="POST" id="search_form">
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Title:</label>
+                            <input type="text" class="form-control" id="recipient-name" name="title">
+                          </div>
+                          <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea type="text" name="message" class="form-control" id="message-text" rows="20"
+                              cols="20"></textarea>
+                          </div>
+                          <button type="button" onclick="form_submit()" class="btn btn-primary"
+                            formaction="/add_announcement">Send message</button>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+                <% for (var i = 0; i < announcement.length; i++) { %>
+                  <% index = i%> 
+                <hr>
+                <h3 class="ann_title" name="title"> <%= announcement[i].title %> </h3>
+                <h4 class="ann_user"><%= announcement[i].username %> </h4>
+                <h4 class="ann_date"><%= announcement[i].date + "," + announcement[i].time %> </h4>
+                <h6 class="ann_message">
+                  <%= announcement[i].message %>
+                </h6>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">Edit</button>
+                <button type="button" class="btn btn-danger edit_button" data-toggle="modal" formaction="/">Delete</button>
+                <% }  %>
+                <!-- Modal -->
+                <div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+                  aria-labelledby="editModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <p id="mn"></p>
+                        <h5 class="modal-title" id="editModalLabel">New message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form action="/add_announcement" method="POST" id="search_form">
+                          <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Title:</label>
+                            <input type="text" class="form-control" id="recipient-name" name="title" value= <%= announcement[index].title %> >
+                          </div>
+                          <div class="form-group">
+                            <label for="message-text" class="col-form-label">Message:</label>
+                            <textarea type="text" name="message" class="form-control" id="message-text" rows="20"
+                              cols="20"><%= announcement[index].message %></textarea>
+                          </div>
+                          <button type="button" class="btn btn-primary"
+                            formaction="/add_announcement">Send message</button>
+                        </form>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="v-pills-assignments" role="tabpanel"
+                aria-labelledby="v-pills-assignments-tab">...</div>
+              <div class="tab-pane fade" id="v-pills-outcomes" role="tabpanel" aria-labelledby="v-pills-outcomes-tab">
+                ...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="row">
+          <div class="col-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link active" id="v-pills-slides-tab" data-toggle="pill" href="#v-pills-slides" role="tab"
+                aria-controls="v-pills-slides" aria-selected="true">Slides</a>
+              <a class="nav-link" id="v-pills-office_hours-tab" data-toggle="pill" href="#v-pills-office_hours"
+                role="tab" aria-controls="v-pills-office_hours" aria-selected="false">Office Hours</a>
+
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="tab-content" id="v-pills-tabContent">
+              <div class="tab-pane fade show active" id="v-pills-slides" role="tabpanel"
+                aria-labelledby="v-pills-slides-tab">...</div>
+              <div class="tab-pane fade" id="v-pills-office_hours" role="tabpanel"
+                aria-labelledby="v-pills-office_hours-tab">...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <div class="row">
+          <div class="col-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link active" id="v-pills-exam_list-tab" data-toggle="pill" href="#v-pills-exam_list"
+                role="tab" aria-controls="v-pills-slides" aria-selected="true">Exam List</a>
+
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="tab-content" id="v-pills-tabContent">
+              <div class="tab-pane fade show active" id="v-pills-exam_list" role="tabpanel"
+                aria-labelledby="v-pills-exam_list-tab">...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-grades" role="tabpanel" aria-labelledby="nav-grades-tab">
+        <div class="row">
+          <div class="col-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link active" id="v-pills-assignment-tab" data-toggle="pill" href="#v-pills-assignment"
+                role="tab" aria-controls="v-pills-assignment" aria-selected="true">Assignments</a>
+              <a class="nav-link" id="v-pills-scale-tab" data-toggle="pill" href="#v-pills-scale" role="tab"
+                aria-controls="v-pills-scale" aria-selected="true">Grade Scale</a>
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="tab-content" id="v-pills-tabContent">
+              <div class="tab-pane fade show active" id="v-pills-assignment" role="tabpanel"
+                aria-labelledby="v-pills-assignment-tab">...</div>
+              <div class="tab-pane fade" id="v-pills-scale" role="tabpanel" aria-labelledby="v-pills-scale-tab">...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="nav-schedule" role="tabpanel" aria-labelledby="nav-schedule-tab">
+        Basic Schedule
+      </div>
+      <div class="tab-pane fade" id="nav-syllabus" role="tabpanel" aria-labelledby="nav-syllabus-tab">
+        <div class="row">
+          <div class="col-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a class="nav-link active" id="v-pills-instructor_info-tab" data-toggle="pill"
+                href="#v-pills-instructor_info" role="tab" aria-controls="v-pills-instructor_info"
+                aria-selected="true">Instructor Info</a>
+              <a class="nav-link" id="v-pills-course_info-tab" data-toggle="pill" href="#v-pills-course_info" role="tab"
+                aria-controls="v-pills-course_info" aria-selected="false">Course Info</a>
+              <a class="nav-link" id="v-pills-school_policy-tab" data-toggle="pill" href="#v-pills-school_policy"
+                role="tab" aria-controls="v-pills-school_policy" aria-selected="false">School Policy</a>
+            </div>
+          </div>
+          <div class="col-9">
+            <div class="tab-content" id="v-pills-tabContent">
+              <div class="tab-pane fade show active" id="v-pills-instructor_info" role="tabpanel"
+                aria-labelledby="v-pills-instructor_info-tab">...</div>
+              <div class="tab-pane fade" id="v-pills-course_info" role="tabpanel"
+                aria-labelledby="v-pills-course_info-tab">...</div>
+              <div class="tab-pane fade" id="v-pills-school_policy" role="tabpanel"
+                aria-labelledby="v-pills-school_policy-tab">...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script
+ src="js/main.js">
+</script>
+</html>
